@@ -18,11 +18,7 @@ mysql.init_app(app)
 
 @app.route('/', methods=['GET'])
 def index():
-    user = {'username': 'players Project'}
-    cursor = mysql.get_db().cursor()
-    cursor.execute('SELECT * FROM tblPlayersImport')
-    result = cursor.fetchall()
-    return render_template('index.html', title='Home', user=user, players=result)
+    return render_template('login.html', title='Login Page')
 
 
 @app.route('/view/<int:player_id>', methods=['GET'])
@@ -57,6 +53,15 @@ def form_update_post(player_id):
 @app.route('/players/new', methods=['GET'])
 def form_insert_get():
     return render_template('new.html', title='New player Form')
+
+
+@app.route('/index', methods=['GET'])
+def showindex():
+    user = {'username': 'players Project'}
+    cursor = mysql.get_db().cursor()
+    cursor.execute('SELECT * FROM tblPlayersImport')
+    result = cursor.fetchall()
+    return render_template('index.html', title='Home', user=user, players=result)
 
 
 @app.route('/players/new', methods=['POST'])
