@@ -21,6 +21,11 @@ def index():
     return render_template('login.html', title='Login Page')
 
 
+@app.route('/signup', methods=['GET'])
+def index():
+    return render_template('signup.html', title='Signup')
+
+
 @app.route('/view/<int:player_id>', methods=['GET'])
 def record_view(player_id):
     cursor = mysql.get_db().cursor()
