@@ -1,3 +1,5 @@
+# noinspection SqlNoDataSourceInspectionForFile
+
 CREATE DATABASE finalProjectData;
 use finalProjectData;
 
@@ -11,6 +13,25 @@ CREATE TABLE IF NOT EXISTS tblPlayersImport(
   fldHeight DECIMAL(10, 2),
   fldWeight DECIMAL(10, 2),
   fldAge DECIMAL(10, 2),
+  PRIMARY KEY (id)
+);
+
+/* CREATE TABLE */
+CREATE TABLE IF NOT EXISTS tblUsers(
+  id int AUTO_INCREMENT,
+  userName VARCHAR(100),
+  userFirstName VARCHAR(100),
+  userLastName VARCHAR(100),
+  userEmail VARCHAR(100),
+  PRIMARY KEY (id)
+);
+
+/* CREATE TABLE */
+CREATE TABLE IF NOT EXISTS tblTempUsers(
+  id int AUTO_INCREMENT,
+  userEmail VARCHAR(100),
+  userPassword VARCHAR(100),
+  userHash VARCHAR(100),
   PRIMARY KEY (id)
 );
 

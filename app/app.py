@@ -4,6 +4,8 @@ from flask import Flask, request, Response, redirect
 from flask import render_template
 from flaskext.mysql import MySQL
 from pymysql.cursors import DictCursor
+from utilities import email
+
 
 app = Flask(__name__)
 mysql = MySQL(cursorclass=DictCursor)
@@ -63,6 +65,7 @@ def form_insert_get():
 @app.route('/index', methods=['GET'])
 def showindex():
     user = {'username': 'players Project'}
+    email.sendemail('sa247@njit.edu')
     cursor = mysql.get_db().cursor()
     cursor.execute('SELECT * FROM tblPlayersImport')
     result = cursor.fetchall()
