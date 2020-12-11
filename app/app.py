@@ -22,7 +22,7 @@ def index():
 
 
 @app.route('/signup', methods=['GET'])
-def index():
+def signup():
     return render_template('signup.html', title='Signup')
 
 
