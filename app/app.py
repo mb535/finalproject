@@ -44,6 +44,15 @@ def form_edit_get(player_id):
     return render_template('edit.html', title='Edit Form', player=result[0])
 
 
+@app.route('/checklogin/<string:email>', methods=['POST'])
+def form_check_login(email):
+    cursor = mysql.get_db().cursor()
+    cursor.execute('SELECT * FROM tblUsers WHERE userEmail=%s', email)
+    request.form.get('pwd')
+    result = cursor.fetchall()
+    return render_template('edit.html', title='Edit Form', player=result[0])
+
+
 @app.route('/edit/<int:player_id>', methods=['POST'])
 def form_update_post(player_id):
     cursor = mysql.get_db().cursor()
