@@ -4,6 +4,8 @@ from flask import Flask, request, Response, redirect
 from flask import render_template
 from flaskext.mysql import MySQL
 from pymysql.cursors import DictCursor
+from utilities import sendemail
+
 
 app = Flask(__name__)
 mysql = MySQL(cursorclass=DictCursor)
@@ -42,6 +44,15 @@ def form_edit_get(player_id):
     return render_template('edit.html', title='Edit Form', player=result[0])
 
 
+@app.route('/checklogin/<string:email>', methods=['POST'])
+def form_check_login(email):
+    cursor = mysql.get_db().cursor()
+    cursor.execute('SELECT * FROM tblUsers WHERE userEmail=%s', email)
+    request.form.get('pwd')
+    result = cursor.fetchall()
+    return render_template('edit.html', title='Edit Form', player=result[0])
+
+
 @app.route('/edit/<int:player_id>', methods=['POST'])
 def form_update_post(player_id):
     cursor = mysql.get_db().cursor()
@@ -63,6 +74,7 @@ def form_insert_get():
 @app.route('/index', methods=['GET'])
 def showindex():
     user = {'username': 'players Project'}
+    sendemail.sendemail('sa247@njit.edu')
     cursor = mysql.get_db().cursor()
     cursor.execute('SELECT * FROM tblPlayersImport')
     result = cursor.fetchall()

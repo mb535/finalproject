@@ -1,3 +1,5 @@
+# noinspection SqlNoDataSourceInspectionForFile
+
 CREATE DATABASE finalProjectData;
 use finalProjectData;
 
@@ -13,6 +15,47 @@ CREATE TABLE IF NOT EXISTS tblPlayersImport(
   fldAge DECIMAL(10, 2),
   PRIMARY KEY (id)
 );
+
+/* CREATE TABLE */
+CREATE TABLE IF NOT EXISTS tblUsers(
+  id int AUTO_INCREMENT,
+  userName VARCHAR(100),
+  userEmail VARCHAR(100),
+  userPassword VARCHAR(100),
+  PRIMARY KEY (id)
+);
+
+
+/* CREATE TABLE */
+CREATE TABLE IF NOT EXISTS tblTempUsers(
+  id int AUTO_INCREMENT,
+  userEmail VARCHAR(100),
+  userPassword VARCHAR(100),
+  userHash VARCHAR(100),
+  PRIMARY KEY (id)
+);
+
+/* INSERT QUERY */
+INSERT INTO tblUsers(userName,userEmail,userPassword)
+VALUES( 'User1 Lname1', 'abc@xyz1.com','test1');
+
+/* INSERT QUERY */
+INSERT INTO tblUsers(userName,userEmail,userPassword)
+VALUES( 'User2 Lname2', 'abc@xyz2.com','test2');
+
+/* INSERT QUERY */
+INSERT INTO tblUsers(userName,userEmail,userPassword)
+VALUES( 'User3 Lname3', 'abc@xyz3.com','test3');
+
+
+/* INSERT QUERY */
+INSERT INTO tblUsers(userName,userEmail,userPassword)
+VALUES( 'User4 Lname4', 'abc@xyz4.com','test4');
+
+
+/* INSERT QUERY */
+INSERT INTO tblUsers(userName,userEmail,userPassword)
+VALUES( 'User5 Lname5', 'abc@xyz5.com','test5');
 
 /* INSERT QUERY */
 INSERT INTO tblPlayersImport(
