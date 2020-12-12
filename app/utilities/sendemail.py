@@ -28,6 +28,7 @@ def sendemail(to):
     How are you?
     Real Python has many great tutorials:
     www.realpython.com"""
+
     html = """\
     <html>
       <body>
