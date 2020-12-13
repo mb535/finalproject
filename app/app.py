@@ -106,7 +106,7 @@ def showindex():
 @app.route('/logins/new', methods=['POST'])
 def addlogin():
     cursor = mysql.get_db().cursor()
-    inputData = (request.form.get('userName'), request.form.get('userEmail'), request.form.get('userPassword'),
+    inputData = (request.form.get('name'), request.form.get('email'), request.form.get('pswd'),
                  request.form.get('userHash'))
     sql_insert_query = """INSERT INTO tblTempUsers (userName,userEmail,userPassword,userHash) 
     VALUES (%s, %s,%s, %s) """
