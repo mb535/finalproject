@@ -29,6 +29,7 @@ CREATE TABLE IF NOT EXISTS tblUsers(
 /* CREATE TABLE */
 CREATE TABLE IF NOT EXISTS tblTempUsers(
   id int AUTO_INCREMENT,
+  userName VARCHAR(100),
   userEmail VARCHAR(100),
   userPassword VARCHAR(100),
   userHash VARCHAR(100),

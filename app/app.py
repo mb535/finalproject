@@ -103,6 +103,18 @@ def showindex():
     return render_template('index.html', title='Home', user=user, players=result)
 
 
+@app.route('/logins/new', methods=['POST'])
+def addlogin():
+    cursor = mysql.get_db().cursor()
+    inputData = (request.form.get('userName'), request.form.get('userEmail'), request.form.get('userPassword'),
+                 request.form.get('userHash'))
+    sql_insert_query = """INSERT INTO tblTempUsers (userName,userEmail,userPassword,userHash) 
+    VALUES (%s, %s,%s, %s) """
+    cursor.execute(sql_insert_query, inputData)
+    mysql.get_db().commit()
+    return redirect("/", code=302)
+
+
 @app.route('/players/new', methods=['POST'])
 def form_insert_post():
     cursor = mysql.get_db().cursor()
