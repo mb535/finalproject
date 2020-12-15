@@ -13,11 +13,16 @@
     // Function to check whether both passwords
     // are same or not.
     function checkPassword(form) {
-        password1 = form.pswd.value;
-        password2 = form.pswd2.value;
+        password1 = form.pswd.value.trim();
+        password2 = form.pswd2.value.trim();
 
+        //If name is left blank
+      if (form.name.value.trim() == '')
+        alert("Please enter your name.");
+      else if (form.email.value.trim() == '')
+        alert ("Please enter your email.");
         // If password not entered
-        if (password1 == '')
+        else if (password1 == '')
             alert ("Please enter Password");
 
         // If confirm password not entered
@@ -27,7 +32,7 @@
         // If Not same return False.
         else if (password1 != password2) {
             alert ("\nPassword did not match: Please try again...")
-            return false;
+            //return false;
         }
 
         // If same return True.
@@ -35,6 +40,8 @@
 
             return true;
         }
+
+        return false;
     }
   </script>
 </head>
