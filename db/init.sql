@@ -22,7 +22,16 @@ CREATE TABLE IF NOT EXISTS tblUsers(
   userName VARCHAR(100),
   userEmail VARCHAR(100),
   userPassword VARCHAR(100),
+  userHash VARCHAR(100),
   PRIMARY KEY (id)
+);
+
+CREATE TABLE IF NOT EXISTS tblErrors(
+  errCode int AUTO_INCREMENT,
+  errName VARCHAR(100),
+  errMessage VARCHAR(100),
+  errNextPage VARCHAR(100),
+  PRIMARY KEY (errCode)
 );
 
 
@@ -37,26 +46,45 @@ CREATE TABLE IF NOT EXISTS tblTempUsers(
 );
 
 /* INSERT QUERY */
-INSERT INTO tblUsers(userName,userEmail,userPassword)
-VALUES( 'User1 Lname1', 'abc@xyz1.com','test1');
+INSERT INTO tblErrors(errCode,errName,errMessage,errNextPage)
+VALUES( '404', 'USER_NOT_FOUND','User name not found', 'signup');
 
 /* INSERT QUERY */
-INSERT INTO tblUsers(userName,userEmail,userPassword)
-VALUES( 'User2 Lname2', 'abc@xyz2.com','test2');
+INSERT INTO tblErrors(errCode,errName,errMessage,errNextPage)
+VALUES( '405', 'USER_EXISTS','User name already exists.', 'login');
 
 /* INSERT QUERY */
-INSERT INTO tblUsers(userName,userEmail,userPassword)
-VALUES( 'User3 Lname3', 'abc@xyz3.com','test3');
+INSERT INTO tblErrors(errCode,errName,errMessage,errNextPage)
+VALUES( '406', 'EMAIL_NOT_VERIFIED','Please verify your email before trying to login.', 'login');
+
+INSERT INTO tblErrors(errCode,errName,errMessage,errNextPage)
+VALUES( '407', 'INVALID_LOGIN','Please check your email id/password and try again.', 'login');
+
+/* INSERT QUERY */
+INSERT INTO tblErrors(errCode,errName,errMessage,errNextPage)
+VALUES( '200', 'USER_CREATED','User created successfully. Please check your email for login instructions.', 'login');
+
+/* INSERT QUERY */
+INSERT INTO tblUsers(userName,userEmail,userPassword, userHash)
+VALUES( 'User1 Lname1', 'abc@xyz1.com','test1','');
+
+/* INSERT QUERY */
+INSERT INTO tblUsers(userName,userEmail,userPassword, userHash)
+VALUES( 'User2 Lname2', 'abc@xyz2.com','test2','');
+
+/* INSERT QUERY */
+INSERT INTO tblUsers(userName,userEmail,userPassword, userHash)
+VALUES( 'User3 Lname3', 'abc@xyz3.com','test3','');
 
 
 /* INSERT QUERY */
-INSERT INTO tblUsers(userName,userEmail,userPassword)
-VALUES( 'User4 Lname4', 'abc@xyz4.com','test4');
+INSERT INTO tblUsers(userName,userEmail,userPassword, userHash)
+VALUES( 'User4 Lname4', 'abc@xyz4.com','test4','');
 
 
 /* INSERT QUERY */
-INSERT INTO tblUsers(userName,userEmail,userPassword)
-VALUES( 'User5 Lname5', 'abc@xyz5.com','test5');
+INSERT INTO tblUsers(userName,userEmail,userPassword, userHash)
+VALUES( 'User5 Lname5', 'abc@xyz5.com','test5','');
 
 /* INSERT QUERY */
 INSERT INTO tblPlayersImport(
