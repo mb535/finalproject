@@ -8,14 +8,56 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script>
+
+    // Function to check whether both passwords
+    // are same or not.
+    function checkPassword(form) {
+        password1 = form.pswd.value.trim();
+        password2 = form.pswd2.value.trim();
+
+        //If name is left blank
+      if (form.name.value.trim() == '')
+        alert("Please enter your name.");
+      else if (form.email.value.trim() == '')
+        alert ("Please enter your email.");
+        // If password not entered
+        else if (password1 == '')
+            alert ("Please enter Password");
+
+        // If confirm password not entered
+        else if (password2 == '')
+            alert ("Please enter confirm password");
+
+        // If Not same return False.
+        else if (password1 != password2) {
+            alert ("\nPassword did not match: Please try again...")
+            //return false;
+        }
+
+        // If same return True.
+        else{
+
+            return true;
+        }
+
+        return false;
+    }
+  </script>
 </head>
+
 <body>
 
 <div class="container">
     <p></p>
     <br><br>
   <h2>Signup for Player Data</h2>
-  <form action="/action_page.php">
+
+  <form action="/action_page.php" onsubmit="return checkPassword(this)" method="post">
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input type="text" class="form-control" id="name" placeholder="Enter name" name="name">
+    </div>
     <div class="form-group">
       <label for="email">Email:</label>
       <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
@@ -26,15 +68,12 @@
     </div>
     <div class="form-group">
       <label for="pwd">Reenter Password:</label>
-      <input type="password2" class="form-control" id="pwd2" placeholder="Enter password again" name="pswd2">
-    </div>
-    <div class="form-group form-check">
-      <label class="form-check-label">
-        <input class="form-check-input" type="checkbox" name="remember"> Remember me
-      </label>
+      <input type="password" class="form-control" id="pwd2" placeholder="Enter password again" name="pswd2"
+             oninput="check(this)">
     </div>
 
     <button type="submit" class="btn btn-primary">Submit</button>
+
     <a href="index"> Go to Index Page - TEMPORARY</a>
   </form>
 </div>
