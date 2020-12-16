@@ -34,17 +34,6 @@ CREATE TABLE IF NOT EXISTS tblErrors(
   PRIMARY KEY (errCode)
 );
 
-
-/* CREATE TABLE */
-CREATE TABLE IF NOT EXISTS tblTempUsers(
-  id int AUTO_INCREMENT,
-  userName VARCHAR(100),
-  userEmail VARCHAR(100),
-  userPassword VARCHAR(100),
-  userHash VARCHAR(100),
-  PRIMARY KEY (id)
-);
-
 /* INSERT QUERY */
 INSERT INTO tblErrors(errCode,errName,errMessage,errNextPage)
 VALUES( '404', 'USER_NOT_FOUND','User name not found', 'signup');
@@ -63,6 +52,10 @@ VALUES( '407', 'INVALID_LOGIN','Please check your email id/password and try agai
 /* INSERT QUERY */
 INSERT INTO tblErrors(errCode,errName,errMessage,errNextPage)
 VALUES( '200', 'USER_CREATED','User created successfully. Please check your email for login instructions.', 'login');
+
+/* INSERT QUERY */
+INSERT INTO tblErrors(errCode,errName,errMessage,errNextPage)
+VALUES( '201', 'EMAIL_VERIFIED','Email verified successfully. Please proceed to login.', 'login');
 
 /* INSERT QUERY */
 INSERT INTO tblUsers(userName,userEmail,userPassword, userHash)

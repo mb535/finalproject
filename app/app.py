@@ -6,6 +6,9 @@ from flaskext.mysql import MySQL
 from pymysql.cursors import DictCursor
 import sys
 from utilities import sendemail
+from datetime import datetime
+import random
+
 
 
 app = Flask(__name__)
@@ -82,6 +85,18 @@ def form_check_login():
     # return render_template('edit.html', title='Edit Form', player=result[0])
 
 
+@app.route('/validateLogin/<int:intHash>', methods=['GET', 'POST'])
+def validateLogin(intHash):
+        cursor = mysql.get_db().cursor()
+        inputData = str(intHash)
+        sql_update_query = """UPDATE tblUsers t SET t.userHash = '' WHERE t.userHash = %s """
+        cursor.execute(sql_update_query, inputData)
+        mysql.get_db().commit()
+        cursor.execute('SELECT * FROM tblErrors where errName=%s', 'EMAIL_VERIFIED')
+        result = cursor.fetchall()
+        return render_template('notify.html', title='Notify', player=result[0])
+
+
 @app.route('/edit/<int:player_id>', methods=['POST'])
 def form_update_post(player_id):
     cursor = mysql.get_db().cursor()
@@ -122,14 +137,19 @@ def addlogin():
 
     row_count = cursor.rowcount
     if row_count == 0:
+
+        strPassword = request.form.get('pswd')
+        strName = request.form.get('name')
+
         print('No rows returned', file=sys.stderr)
-        inputData = (request.form.get('name'), request.form.get('email'), request.form.get('pswd'),
-                     '1234')
+        random.seed(datetime.now())
+        strHash = str(random.randint(123234, 1232315324))
+        inputData = (strName, strEmail, strPassword, strHash)
         sql_insert_query = """INSERT INTO tblUsers (userName,userEmail,userPassword,userHash) 
             VALUES (%s, %s,%s, %s) """
         cursor.execute(sql_insert_query, inputData)
         mysql.get_db().commit()
-        sendemail.sendemail(request.form.get('email'))
+        sendemail.sendemail(strEmail, strHash)
         return render_template('login.html', title='Login Page')
     else:
         print('Login already exists', file=sys.stderr)
