@@ -11,7 +11,7 @@ def absolute_path(filepath):
     return relative.absolute()
 
 
-def sendemail(to):
+def sendemail(to, strHash):
 
     sender_email = "njit601@gmail.com"
     receiver_email = "sa247@njit.edu"
@@ -34,8 +34,8 @@ def sendemail(to):
       <body>
         <p>Hi,<br>
            How are you?<br>
-           <a href="http://www.realpython.com">Real Python</a> 
-           has many great tutorials.
+           <a href="http://localhost:5000/validateLogin/""""" + strHash + """">Click Here</a> 
+           to validate your email address.
         </p>
       </body>
     </html>
