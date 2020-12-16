@@ -36,6 +36,9 @@ def login():
 def signup():
     return render_template('signup.html', title='Signup')
 
+@app.route('/calendar', methods=['GET'])
+def calendar():
+    return render_template('calendar.html', title='Calendar')
 
 @app.route('/view/<int:player_id>', methods=['GET'])
 def record_view(player_id):
@@ -247,6 +250,7 @@ def api_delete(player_id) -> str:
     mysql.get_db().commit()
     resp = Response(status=200, mimetype='application/json')
     return resp
+
 
 
 if __name__ == '__main__':
