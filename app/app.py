@@ -27,6 +27,11 @@ def index():
     return render_template('login.html', title='Login Page')
 
 
+@app.route('/login', methods=['GET'])
+def login():
+    return render_template('login.html', title='Login Page')
+
+
 @app.route('/signup', methods=['GET'])
 def signup():
     return render_template('signup.html', title='Signup')
@@ -58,7 +63,9 @@ def form_check_login():
     row_count = cursor.rowcount
     if row_count == 0:
         print('No rows returned', file=sys.stderr)
-        return render_template('signup.html', title='Signup')
+        cursor.execute('SELECT * FROM tblErrors where errName=%s', 'USER_NOT_FOUND')
+        result = cursor.fetchall()
+        return render_template('notify.html', title='Notify', player=result[0])
     else:
         result = cursor.fetchall()
 

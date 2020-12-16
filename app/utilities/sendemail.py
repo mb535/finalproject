@@ -14,28 +14,29 @@ def absolute_path(filepath):
 def sendemail(to, strHash):
 
     sender_email = "njit601@gmail.com"
-    receiver_email = "sa247@njit.edu"
+    receiver_email = to
     password = 'jNmb+4tYYv'
 
     message = MIMEMultipart("alternative")
-    message["Subject"] = "multipart test"
+    message["Subject"] = "Verify email for player's database access."
     message["From"] = sender_email
     message["To"] = receiver_email
 
     # Create the plain-text and HTML version of your message
     text = """\
-    Hi,
-    How are you?
-    Real Python has many great tutorials:
-    www.realpython.com"""
+    Hi, 
+    You have signed up for the Player's database. Please click on the email link for verification.
+    You can ignore this message if you didn't signup."""
 
     html = """\
     <html>
       <body>
         <p>Hi,<br>
-           How are you?<br>
+           You have signed up for the Player's database.<br><br>
            <a href="http://localhost:5000/validateLogin/""""" + strHash + """">Click Here</a> 
            to validate your email address.
+           <br><br> If this was not you, please ignore this email message, but please note that you will NOT be able to
+           login until the email is verified.
         </p>
       </body>
     </html>
