@@ -8,6 +8,9 @@ This project extends the final individual assignment, which was a website showin
 
 Sachin completed a feature that adds a signup and login functionality that will allow users to signup to use the website.
 
+Mervin worked on a feature which adds a calendar on a separate page.  The calendar uses FullCalendar for the UI and javascript and 
+uses Google Calendar as a backend that manages and persistently stores event data.
+
 The initial page of the application is a login page that can be used with some predefined logins. Or users can signup using their own email and passwords. Upon signup, if the email address is valid, users will receive a link to verify their login. Once the login is verified, the user will be able to login to view and operate the player database.
 
 ## Installation
